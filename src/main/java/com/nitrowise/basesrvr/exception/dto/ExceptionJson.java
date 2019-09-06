@@ -1,4 +1,4 @@
-package com.nitrowise.basesrvr.model.dto.exception;
+package com.nitrowise.basesrvr.exception.dto;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -12,19 +12,16 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class ExceptionJson {
 
-    String technikaiAzonosito;
     String status;
     String message;
     String developerMessage;
 
-    public ExceptionJson(String technikaiAzonosito, String status, String message) {
-        this.technikaiAzonosito = technikaiAzonosito;
+    public ExceptionJson(String status, String message) {
         this.status = status;
         this.message = message;
     }
 
-    public ExceptionJson(String technikaiAzonosito, String message) {
-        this.technikaiAzonosito = technikaiAzonosito;
+    public ExceptionJson(String message) {
         this.message = message;
     }
 

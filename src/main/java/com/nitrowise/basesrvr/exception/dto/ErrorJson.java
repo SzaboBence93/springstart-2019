@@ -1,4 +1,4 @@
-package com.nitrowise.basesrvr.model.dto.exception;
+package com.nitrowise.basesrvr.exception.dto;
 
 import lombok.AccessLevel;
 import lombok.Data;
@@ -20,12 +20,12 @@ public class ErrorJson extends ExceptionJson {
     Map<String, Set<String>> attributeErrors;
     Set<String> globalErrors;
 
-    public ErrorJson(String technikaiAzonosito) {
-        super(technikaiAzonosito, "Hiba lépett fel a funkció igénybevétele során.");
+    public ErrorJson() {
+        super("Hiba lépett fel a funkció igénybevétele során.");
     }
 
-    public ErrorJson(String technikaiAzonosito, String status, String message, BindingResult errors) {
-        super(technikaiAzonosito, StringUtils.isNotBlank(status) ? status : "Hiba lépett fel a funkció igénybevétele során.", message);
+    public ErrorJson(String status, String message, BindingResult errors) {
+        super(StringUtils.isNotBlank(status) ? status : "Hiba lépett fel a funkció igénybevétele során.", message);
         if (errors != null && errors.hasErrors()) {
             if (!errors.getFieldErrors().isEmpty()) {
                 this.attributeErrors = new HashMap();
@@ -46,12 +46,12 @@ public class ErrorJson extends ExceptionJson {
 
     }
 
-    public ErrorJson(String technikaiAzonosito, String status, BindingResult errors) {
-        this(technikaiAzonosito, status, (String)null, errors);
+    public ErrorJson(String status, BindingResult errors) {
+        this(status, (String)null, errors);
     }
 
-    public ErrorJson(String technikaiAzonosito, BindingResult errors) {
-        this(technikaiAzonosito, (String)null, (String)null, errors);
+    public ErrorJson(BindingResult errors) {
+        this((String)null, (String)null, errors);
     }
 
     public void addAttributeError(String field, String error) {
